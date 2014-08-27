@@ -1,0 +1,37 @@
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+	#bottle,
+	#tagline { display: none; }
+}
+
+
+
+@media only screen 
+and (max-width : 800px) {
+	#bottle,
+	#tagline { display: none; }
+}
+
+@media only screen 
+and (max-width : 770px) {
+	#page_wrapper { width: 95%; }
+	.posts {left: 0; }
+	header h3 { width: 90%; 
+		span { display: inline; }
+	}
+ 
+	.twitter .description a, 
+	.facebook .description a, 
+	.instagram .description a,
+	.home .posts .text .read_more {
+		font-size: 80%;
+	}
+}
+
+@media only screen 
+and (max-width : 700px) {
+	header p { margin-top: 6px; }
+	#tumblr_controls { right: 1px; top: 55px; }
+}

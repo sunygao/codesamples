@@ -1,0 +1,415 @@
+@import '_reset.scss';
+
+@import '_fonts.scss';
+
+@import "compass/css3";
+
+
+
+/*---Utility Classes---*/
+
+.ir { text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; border: 0; }
+.hidden { display: none; visibility: hidden; }
+.visuallyhidden { border: 0; clip: rect(0 0 0 0); height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; }
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus { clip: auto; height: auto; margin: 0; overflow: visible; position: static; width: auto; }
+.invisible { visibility: hidden; }
+.clearfix:before, .clearfix:after { content: "\0020"; display: block; height: 0; overflow: hidden; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+.truncate { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+a { color: #fff; text-decoration: none; }
+
+$dark_blue: #174a86;
+
+@import "sprites/*.png";
+@mixin global_sprite ($image) { $image_path: "sprites/#{$image}.png"; @extend .ir; @include sprites-sprite($image); display: block; width: image-width($image_path); height: image-height($image_path); }
+@mixin button() { background-color: #00346d; border: 1px solid #fff; color: #fff; font-size: 93%; letter-spacing: 1px; padding: 4px 10px 5px; @include border-radius(5px); @include text-shadow(rgba(#183a64, 0) 2px 3px 3px); @include helveticaLight();
+	strong { @include helveticaBold(); }
+	&:after { @include arrowRight(); }
+	&:hover { background-color: lighten(#0d82c5, 5%); }
+}
+
+@mixin buttonHover(){ @include button(); background: lighten(#0d82c5, 5%); }
+
+@mixin inspiration() { font-size: 146%; margin-top: 10px; @include text-shadow(rgba(#183a64, 0.9) 2px 3px 10px); @include helveticaNormal();
+		a { @include button(); @include global_sprite(header_drink_cta); background-color: transparent; @include border-radius(0px); border: 0px; @include helveticaLight(); font-size: 106%; height: 25px; padding: 0; width: 153px;
+			&:after { display: none; }
+			&:hover { background-color: transparent; }
+			em { @include helveticaBold(); }
+		}
+}
+@mixin arrow() {  display: inline-block; font-family: FontAwesome; position: relative; }
+@mixin arrowRight() { @include arrow(); content: "\f0da"; margin-left: 5px; top: 1px; }
+@mixin arrowLeft() { @include arrow(); content: "\f0d9"; margin-right: 5px; top: 1px; }
+
+body { background: #336ca3 url(../images/bkg_body.jpg) no-repeat 50% 0; background-attachment: fixed; color: #fff; @include helveticaLight(); font-size: 13px; 
+		-webkit-background-size: cover;
+		 	 -moz-background-size: cover;
+						background-size: cover;
+	.ie8 & { margin: 0 auto; max-width: 1400px; }
+}
+
+/*+++Global elements+++*/
+#bottle { @include global_sprite(bottle); bottom: 0; left: 50%; margin-left: -460px; position: fixed; z-index: -1; }
+#tagline { @include global_sprite(tagline); bottom: 80px; right: 50%; margin-right: -525px; position: fixed; z-index: -1; }
+#infscr-loading { margin: -30px 0 10px; text-align: center; }
+.toolbar { background: #fff; height: 25px; padding: 0 15px; 
+	.notes { color: $dark_blue; font-size: 93%; float: left; @include helveticaBold(); height: auto !important; margin-top: 6px; width: auto !important; }
+	.tumblr_tools { float: right; margin-top: 3px; width: 70px;
+		a,
+		div { float: left; margin-left: 15px; }
+	}
+}
+
+
+/*+++Header+++*/
+header { margin: 27px auto 0; width: 96.4%; 
+	nav { overflow: hidden; padding-bottom: 8px; }
+	p { @include inspiration(); float: left; font-size: 135%; margin-top: 0;
+		a { margin-top: 10px; font-size: 88%; }
+	}
+	ul { float: right; width: 120px;
+		a { float: left; margin-left: 16px; }
+		.facebook { @include global_sprite(header_fb); }
+		.twitter { @include global_sprite(header_twitter); }
+		.instagram { @include global_sprite(header_instagram); }
+	}
+	h1 { 
+		a { @include global_sprite(logo); clear: both; margin: 23px auto -14px;  }
+	}
+	h2 { 
+		a { @include global_sprite(headline); margin: 0 auto 15px; }
+	}
+	h3 { font-size: 130%; line-height: 130%; margin: 0 auto 40px; text-align: center; width: 670px; 
+		@include text-shadow(rgba(#183a64, 0.9) 2px 3px 3px);
+		span { display: block; }
+
+	}
+}
+#tumblr_controls { position: absolute; right: 155px; top: 25px; }
+
+#page_wrapper { margin: 0 auto; width: 693px; }
+
+h5 { @include inspiration(); font-size: 192%; margin: 0 auto 135px; width: 480px;
+ a { @include global_sprite(body_drink_cta); @include border-radius(0px); border: 0px; float: right; margin-top: -7px; }
+}
+
+/*+++Index page+++*/
+.home {
+		.ie9 & {
+			h2 p,
+			h4 p { display: inline !important; }
+			h2 p a,
+			h4 p a { display: inline !important; }
+		}
+	.posts { padding-bottom: 135px; position: relative; left: 7px;
+
+
+		/*+++Global to all open page items+++*/
+		.grid_item { height: auto !important; 
+			h2 a,
+			h4 a,
+			p { @include text-shadow(rgba(#000000, 0.9) 2px 3px 3px); filter: progid:DXImageTransform.Microsoft.Shadow(color=#000000,direction=120,strength=3); 
+				.ie9 &,
+				.ie8 & { display: block; }
+			}
+		}
+		.inner_wrapper { background-repeat: no-repeat; cursor: pointer; height: 300px; position: relative; max-width: 100%; overflow: hidden; width: 24.625%;
+		-webkit-background-size: cover;
+			 -moz-background-size: cover;
+						background-size: cover;
+				background-position: center;
+							-webkit-transform: translate3d(0,0,0);
+								 -moz-transform: translate3d(0,0,0);
+									 -o-transform: translate3d(0,0,0);
+									-ms-transform: translate(0,0);
+									-ms-transform: translate3d(0,0,0);
+											transform: translate3d(0,0,0);
+						 -webkit-transition: -webkit-transform 0.6s 0.1s ease-in-out;
+								-moz-transition: -moz-transform 0.6s 0.1s ease-in-out;
+									-o-transition: -o-transform 0.6s 0.1s ease-in-out;
+								 -ms-transition: -ms-transform 0.6s 0.1s ease-in-out;
+										 transition: transform 0.6s 0.1s ease-in-out;
+		-webkit-backface-visibility: hidden;
+						-webkit-perspective: 1000;
+						backface-visibility: hidden;
+										perspective: 1000;
+
+			.ie8 & { background: transparent !important; 
+				h2, h4, p, .cta a, .read_more, .play_btn { position: relative; z-index: 2; }
+				.cta p { position: static; }
+			}
+			img { display: none; }
+			.background_image,
+			.ie8 & img { display: block; left: 0; position: absolute; min-height: 100%; min-width: 100%; top: 0; }
+			
+
+		}
+		.read_more,
+		.read_more:after,
+		.toolbar .notes { @include text-shadow(rgba(#183a64, 0) 2px 2px 3px); filter:none; }
+
+		.background_1 { background: url(../images/backgrounds/bg_1.jpg) no-repeat; background-size: cover; }
+		.background_2 { background: url(../images/backgrounds/bg_2.jpg) no-repeat; background-size: cover; }
+		.background_3 { background: url(../images/backgrounds/bg_3.jpg) no-repeat; background-size: cover; }
+		.background_4 { background: url(../images/backgrounds/bg_3.jpg) no-repeat; background-size: cover; }
+
+		/*+++Photo posts+++*/
+		.photo {
+			a { display: block; height: 100%; width: 100%; }
+		}
+		.photoset,
+		.photo {
+			.inner_wrapper { display: none; }
+			.inner_wrapper:first-child { display: block; }
+		}
+
+		/*+++Video posts+++*/
+		.video {
+			.inner_wrapper {
+				h2 a,
+				h4 a { bottom: 25px; left: 10px; padding: 0; position: absolute; width: 93%; }
+			
+				.video_wrapper { height: 100%; position: relative; width: 100%; 
+					.thumb_wrapper { display: block; height: 100%; width: 100%; 
+						&:hover { 
+							.play_btn { @include global_sprite(btn_play_hover); }
+						}
+					}
+				}
+				.tumblr_video_container,
+				iframe { height: 100% !important; position: absolute; width: 100% !important; }
+				.play_btn { @include global_sprite(btn_play); left: 50%; margin-left: -70px; margin-top: -57px; position: absolute; top: 50%; }
+			}
+		}
+
+		.video,
+		.text { 
+			h4,
+			h2 { 
+				a { display: block; font-size: 176%; line-height: 130%; margin-bottom: 10px; }
+			}
+		}
+
+		/*+++Text posts+++*/
+		.text {
+			.text_wrapper { bottom: 25px; left: 10px; padding: 0; position: absolute; width: 93%; }
+			h2,
+			h4 { 
+				a { display: block; font-size: 176%; line-height: 130%; margin-bottom: 10px; }
+			}
+			p { line-height: 140%; }
+	
+			.read_more_container { margin-top: 15px; }
+			.read_more { @include button(); }
+
+			.inner_wrapper {
+				&:hover { 
+					.read_more { @include buttonHover(); }
+				}
+			}
+
+		}
+
+		/*+++Social/link/Quote posts+++*/
+		.link,
+		.quote,
+		.chat {
+			.inner_wrapper {
+				&:before { z-index: 2; }
+				&:hover {
+					.cta a { @include buttonHover(); }
+				}
+			}
+			h2,
+			h4, 
+			.description { padding: 0 20px; 
+				.cta a { bottom: 25px; position: absolute; }
+			}
+			
+			.source { margin-top: 20px; padding: 0 20px; }
+			
+			
+
+			&.twitter {
+				.inner_wrapper {
+					&:before { @include global_sprite(grid_twitter); }
+				}
+			}
+
+			&.facebook {
+				.inner_wrapper {
+					&:before { @include global_sprite(grid_fb); }
+				}
+			}
+
+			&.instagram { 
+				.inner_wrapper {	
+					&:before { @include global_sprite(grid_instagram); }
+				}
+			}
+		}
+
+		
+		/*+++Featured posts+++*/
+		.featured { 
+			.text_wrapper { bottom: 25px; left: auto; padding: 0px; position: absolute; right: 30px; text-align: right; width: 210px; }
+			h4,
+			h2 { 
+				a { font-size: 207.6%; }
+			}
+
+			&.align_left {
+				.text_wrapper { left: 30px; text-align: left; }
+			}
+		}
+
+		.featured.link,
+		.featured.quote,
+		.featured.chat {
+			.text_wrapper { width: 490px; }
+			h4,
+			h2,
+			.description { padding: 0; }
+			h2 a,
+			h4 a { font-size: 100%; }
+			.cta { margin-top: 15px;  
+				a { bottom: 0; position: relative; }
+			}
+		}
+
+	}
+}
+
+/*+++Permalink Pages+++*/
+.permalink {
+	.grid_item { background: #fff; color: #15447a; margin-bottom: 33px; padding: 30px 0 20px; 
+		a { color: #15447a; }
+		h4,
+		h2 { @include helveticaMedium(); font-size: 269%; line-height: 130%; margin-bottom: 10px; }
+		.date { font-size: 115%; margin-bottom: 40px; }
+		.text_wrapper {
+			p { font-size: 130%; line-height: 180%; margin-bottom: 40px; }
+			.date { font-size: 115%; line-height: 100%; }
+		}
+	}
+	.link,
+	.quote,
+	.chat {
+		h4,
+		h2 {
+			span:first-child { position: static; }
+			span { /*display: none;*/ }
+		}
+		.text_wrapper {
+			.cta { margin-bottom: 40px;
+				p { font-size: 100%; line-height: 100%; margin-bottom: 0; }
+			}
+		}
+	}
+
+	.video {
+		.inner_wrapper {
+			.video_wrapper { margin-bottom: 50px; padding-bottom: 56%; position: relative; width: 100%; 
+				iframe,
+				a,
+				.tumblr_video_container { height: 100% !important; position: absolute; width: 100% !important; }
+				a { margin-bottom: -56%; }
+			}
+		}
+	}
+	.caption { font-size: 130%; line-height: 180%; margin-bottom: 40px; }
+	
+	.caption,
+	.notes,
+	.date,
+	#tags,
+	.inner_wrapper { padding: 0 60px; }
+	.inner_wrapper {
+		.caption,
+		.notes,
+		.date,
+		#tags { padding: 0; }
+	}
+	.inner_wrapper {
+		img { margin-bottom: 50px; width: 100%; }
+	}
+	#tags { margin-bottom: 20px;
+		 li { display: inline; }
+		 a { @include helveticaMedium(); color: #0688cc; font-size: 115%; line-height: 130%; }
+	}
+	.notes { @include helveticaBold(); color: #0688cc; font-size: 115%; }
+	.toolbar { margin-bottom: 30px; padding: 0 60px; 
+		.share_tools { float: left; width: 60px;
+			a { float: left; }
+			.facebook { @include global_sprite(post_fb); margin-right: 14px; }
+			.twitter { @include global_sprite(post_twitter); }
+		}
+	}
+}
+
+.link,
+.quote,
+.chat {
+	.inner_wrapper { 
+		&:before { content: ' '; display: block; left: 3px; position: absolute; top: -3px;  }
+	}
+	h4,
+	h2 { font-size: 157%; line-height: 120%; margin-top: 50px; 
+		a { position: relative; } 
+		span:first-child { left: -8px; position: absolute; 
+			.ie9 &,
+			.ie8 & { position: static; }
+		}
+	}
+	&.featured h2,
+	&.featured h4 { font-size: 300%; 
+		span:first-child { left: -14px; }
+	}
+	.description { 
+		.cta a { color: #fff; @include button();  }
+	}
+}
+
+.instagram { 
+	h2,
+	h4 { display: none; }
+}
+
+/*+++Navigation+++*/
+.pagination { margin-bottom: 8px; position: relative;
+	&.bottom { margin-bottom: 30px; }
+	a {  @include button(); top: 0; }
+	.previous { left: 0; position: absolute;
+		&:before { @include arrowLeft(); top: 1px; }
+		&:after { display: none; }
+	}
+	.next { position: absolute; right: 0; 
+		&:after { @include arrowRight(); top: 1px; }
+	}
+	.all { display: block; margin: 0 auto; text-align: center; width: 60px;
+		&:after { display: none; }
+	}
+}
+.home .pagination { 
+	a { top: -70px; }
+}
+
+
+/*+++Notes+++*/
+ol.notes { margin-top: 10px;
+	li { margin-bottom: 10px; }
+		.action { font-size: 77%; }
+		.avatar_frame { margin-right: 6px; position: relative; top: 4px;
+	}
+	a { color: #15447a;  
+		&:hover { color: lighten(#15447a, 10%); }
+	}
+}
+
+@import '_media_queries.scss';
+
+
+
+
